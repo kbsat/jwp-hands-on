@@ -37,7 +37,7 @@ public class TransactionHandler implements InvocationHandler {
             final Object result = method.invoke(target, args);
             transactionManager.commit(transactionStatus);
             return result;
-        } catch (final InvocationTargetException|IllegalAccessException| RuntimeException e) {
+        } catch (final InvocationTargetException | IllegalAccessException | RuntimeException e) {
             transactionManager.rollback(transactionStatus);
             throw new DataAccessException(e);
         }
